@@ -32,9 +32,9 @@ const camera = new THREE.PerspectiveCamera(
 );
 
 camera.position.set(
-  0,
-  3,
-  15
+  5,
+  8,
+  20
 );
 
 
@@ -490,111 +490,163 @@ function createText(
 
 }
 
+// =====================================
+// 100 TEXTOS: "TE AMO" EN DIFERENTES IDIOMAS
+// =====================================
+
+const loveTexts = [
+  "Te amo",                    // Español
+  "I love you",               // Inglés
+  "Je t'aime",                // Francés
+  "Ich liebe dich",           // Alemán
+  "Ti amo",                   // Italiano
+  "Eu te amo",                // Portugués
+  "Ik hou van jou",            // Neerlandés
+  "Jag älskar dig",            // Sueco
+  "Jeg elsker deg",            // Noruego
+  "Jeg elsker dig",            // Danés
+  "Rakastan sinua",            // Finlandés
+  "Ég elska þig",              // Islandés
+  "Szeretlek",                 // Húngaro
+  "Szeretlek",                 // Húngaro
+  "Miluji tě",                 // Checo
+  "Ľúbim ťa",                  // Eslovaco
+  "Kocham cię",                // Polaco
+  "Я тебя люблю",              // Ruso
+  "Я кохаю тебе",              // Ucraniano
+  "Обичам те",                 // Búlgaro
+  "Volim te",                  // Croata
+  "Volim te",                  // Serbio
+  "Ljubim te",                 // Esloveno
+  "Te iubesc",                 // Rumano
+  "Σ' αγαπώ",                  // Griego
+  "Seni seviyorum",            // Turco
+  "Səni sevirəm",              // Azerí
+  "Mən səni sevirəm",          // Azerí
+  "Ես սիրում եմ քեզ",          // Armenio
+  "მიყვარხარ",                 // Georgiano
+  "אני אוהב אותך",             // Hebreo
+  "أحبك",                      // Árabe
+  "أحبكِ",                     // Árabe
+  "أحبك",                      // Árabe
+  "دوستت دارم",                // Persa
+  "मैं तुमसे प्यार करता हूँ",  // Hindi
+  "मैं तुमसे प्यार करती हूँ",  // Hindi
+  "আমি তোমাকে ভালোবাসি",      // Bengalí
+  "میں تم سے محبت کرتا ہوں",  // Urdu
+  "ਮੈਂ ਤੈਨੂੰ ਪਿਆਰ ਕਰਦਾ ਹਾਂ",  // Panyabí
+  "હું તને પ્રેમ કરું છું",    // Gujarati
+  "నేను నిన్ను ప్రేమిస్తున్నాను", // Telugu
+  "நான் உன்னை காதலிக்கிறேன்", // Tamil
+  "ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ", // Canarés
+  "ನಾನು ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ", // Canarés
+  "මම ඔයාට ආදරෙයි",           // Cingalés
+  "ฉันรักคุณ",                 // Tailandés
+  "ผมรักคุณ",                  // Tailandés
+  "ฉันรักเธอ",                 // Tailandés
+  "ฉันรักคุณมาก",              // Tailandés
+  "사랑해",                     // Coreano
+  "사랑해요",                   // Coreano
+  "사랑합니다",                 // Coreano
+  "我爱你",                    // Chino
+  "我愛你",                    // Chino tradicional
+  "我喜欢你",                  // Chino
+  "愛してる",                  // Japonés
+  "大好き",                    // Japonés
+  "愛しています",              // Japonés
+  "愛してるよ",                // Japonés
+  "愛してます",                // Japonés
+  "Mahal kita",                // Filipino
+  "Iniibig kita",              // Filipino
+  "Mahal na mahal kita",       // Filipino
+  "Aku cinta kamu",            // Indonesio
+  "Aku sayang kamu",           // Indonesio
+  "Saya cinta padamu",         // Indonesio
+  "Saya sayang kamu",          // Indonesio
+  "Tôi yêu bạn",               // Vietnamita
+  "Anh yêu em",                // Vietnamita
+  "Em yêu anh",                // Vietnamita
+  "Aku cinta padamu",          // Malayo
+  "Saya cintakan awak",        // Malayo
+  "Saya sayang awak",          // Malayo
+  "Amo-te",                    // Esperanto
+  "Mi amas vin",               // Esperanto
+  "Ma armastan sind",          // Estonio
+  "Es mīlu tevi",              // Letón
+  "Aš tave myliu",             // Lituano
+  "Te iubesc",                 // Rumano
+  "Miluji tě",                 // Checo
+  "Kocham cię",                // Polaco
+  "Ljubim te",                 // Bosnio
+  "Volim te",                  // Serbio
+  "Të dua",                    // Albanés
+  "Te dua",                    // Albanés
+  "Te sakam",                  // Macedonio
+  "Te amo",                    // Latín
+  "Amo te",                    // Latín
+  "Te amo",                    // Italiano
+  "Eu amo-te",                 // Portugués
+  "Te iubesc",                 // Rumano
+  "Ke a go rata",              // Setsuana
+  "Ngiyakuthanda",             // Zulú
+  "Ndiyakuthanda",             // Xhosa
+  "Ndinokuda",                 // Shona
+  "Mo nifẹ rẹ",                // Yoruba
+  "A hụrụ m gị n'anya",        // Igbo
+  "Ndagukunda",                // Kinyarwanda
+  "Waan ku jeclahay",          // Somalí
+  "Nakupenda",                 // Suajili
+  "Ina son ka",                // Hausa
+  "Rwy'n dy garu di",          // Galés
+  "Tha gaol agam ort",         // Gaélico escocés
+  "Is tú mo ghrá",             // Irlandés
+  "T'estimo",                  // Catalán
+  "Maite zaitut",              // Vasco
+  "Ik hou van je"              // Neerlandés
+];
+
 
 // =====================================
-// TEXTOS ENTRE LAS FLORES
+// COLOCAR LOS 100 TEXTOS EN EL CAMPO
 // =====================================
 
-createText(
-  "Je t’aime",
-  5,
-  2,
-  3
-);
+loveTexts.forEach((text, i) => {
+
+  // Distribución alrededor del campo
+  const angle =
+    (i / loveTexts.length) * Math.PI * 2
+    + Math.random() * 0.5;
+
+  const radius =
+    6 + Math.random() * 38;
+
+  const x =
+    Math.cos(angle) * radius;
+
+  const y =
+    -10 + Math.random() * 25;
+
+  const z =
+    Math.sin(angle) * radius;
 
 
-createText(
-  "Ti amo",
-  1,
-  3,
-  9,
-);
+  const label =
+    createText(
+      text,
+      x,
+      y,
+      z
+    );
 
 
-createText(
-  " Eu te amo",
-  -8,
-  -1,
-  -7
-);
+  // Tamaño ligeramente diferente
+  const element =
+    label.element;
 
+  element.style.fontSize =
+    (12 + Math.random() * 8) + "px";
 
-createText(
-  "Ich liebe dich",
-  9,
-  2,
-  10
-);
-
-
-createText(
-  " I love you",
-  0,
-  5,
-  -8
-);
-
-createText(
-   "愛してる" ,
-   5,
-   2,
-   -9,
-)
-createText(
-    "사랑해",
-    5,
-    2,
-    8,
-)
-
-createText(
-    " 我爱你" ,
-    -5,
-    -2,
-    3,
-)
-
-createText(
-    " أحبك" ,
-    -10,
-    4,
-    3,
-)
-
-createText(
-    " Я тебя люблю" ,
-    -14,
-    -4,
-    0,
-)
-
-createText(
-    " Σ’ αγαπώ" ,
-    8,
-    3,
-    -1,
-)
-
-createText(
-    "Seni seviyorum" ,
-    -5,
-    0                                          ,
-    6,
-)
-
-createText(
-    "Ik hou van jou" ,
-    8,
-    7,
-    5,
-)
-
-createText(
-    "TE AMO" ,
-    -7,
-    7,
-    -5,
-)
+});
 
 // =====================================
 // ANIMACIONES
@@ -667,7 +719,7 @@ function animate() {
   // Luz
 
   light.intensity =
-    10 +
+    100 +
     Math.sin(time * 2) *
     2;
 
